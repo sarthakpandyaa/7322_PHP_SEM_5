@@ -1,28 +1,36 @@
-<!-- Write a PHP program for print Previous semester Result using variables &
-constants in PHP. -->
 <?php
-
-define("COLLEGE_NAME", "Marwadi University");
-
-
-$studentName = "Sarthak Pandya";
-$semester = "Semester 4";
-$totalMarks = 600;
-$obtainedMarks = 480;
-$percentage = ($obtainedMarks / $totalMarks) * 100;
-
-
-echo "<h2>Previous Semester Result</h2>";
-echo "College Name: " . COLLEGE_NAME . "<br>";
-echo "Student Name: " . $studentName . "<br>";
-echo "Semester: " . $semester . "<br>";
-echo "Total Marks: " . $totalMarks . "<br>";
-echo "Obtained Marks: " . $obtainedMarks . "<br>";
-echo "Percentage: " . $percentage . "%<br>";
-
-if ($percentage >= 40) {
-    echo "Result: PASS";
-} else {
-    echo "Result: FAIL";
+// A simple PHP program to get array values from user and print them
+$values = [];
+if (isset($_POST['values'])) {
+    $input = trim($_POST['values']);
+    if ($input !== '') {
+        $values = array_map('trim', explode(',', $input));
+    }
 }
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Print Array Values</title>
+</head>
+<body>
+    <h1>Enter array values separated by commas</h1>
+    <form method="post">
+        <label for="values">Array values:</label>
+        <input type="text" id="values" name="values" size="50" value="<?php echo isset($_POST['values']) ? htmlspecialchars($_POST['values']) : ''; ?>">
+        <button type="submit">Submit</button>
+    </form>
+
+    <?php if (!empty($values)): ?>
+        <h2>Array values entered:</h2>
+        <ul>
+            <?php foreach ($values as $value): ?>
+                <li><?php echo htmlspecialchars($value); ?></li>
+            <?php endforeach; ?>
+        </ul>
+    <?php elseif ($_SERVER['REQUEST_METHOD'] === 'POST'): ?>
+        <p>No values entered.</p>
+    <?php endif; ?>
+</body>
+</html>
