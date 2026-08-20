@@ -1,7 +1,15 @@
 <?php
 
-function calculatePercentage($sub1, $sub2, $sub3, $sub4, $sub5) {
-    $total = $sub1 + $sub2 + $sub3 + $sub4 + $sub5;
-    $percentage = ($total / 500) * 100;
-    return $percentage;
-}
+$firstArray = [1, 2, 3, 4];
+$secondArray = [5, 6, 7, 8];
+
+$mergedArray = array_merge($firstArray, $secondArray);
+
+echo "First Array: ";
+print_r($firstArray);
+
+echo "Second Array: ";
+print_r($secondArray);
+
+echo "Merged Array: ";
+print_r($mergedArray);
